@@ -1,0 +1,10 @@
+cd api
+composer create-project laravel/laravel .
+php artisan key:generate
+php artisan make:model Profile -m
+php artisan make:model Question -m
+php artisan make:model QuestionOption -m
+php artisan make:model UserResponse -m
+php artisan make:model AssessmentResult -m
+php artisan make:controller QuestionnaireController
+php artisan make:controller RecommendationController
