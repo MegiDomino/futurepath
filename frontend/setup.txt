@@ -1,0 +1,5 @@
+bash
+
+npm create vite@latest frontend -- --template react
+cd frontend
+npm i axios react-router-dom bootstrap
