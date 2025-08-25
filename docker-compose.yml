@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: futurepath
+      MYSQL_ROOT_PASSWORD: yourpassword
+    ports: ["3306:3306"]
+    volumes: [dbdata:/var/lib/mysql]
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    env_file: ./api/.env
+    depends_on: [db]
+    ports: ["9000:9000"]
+    command: sh -lc "php artisan migrate --seed && php artisan serve --host 0.0.0.0 --port 9000"
+  ml:
+    build:
+      context: ./ml
+      dockerfile: Dockerfile
+    ports: ["8000:8000"]
+  # frontend can run with "npm run dev" locally
+
+volumes:
+  dbdata:
